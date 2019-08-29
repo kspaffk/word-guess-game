@@ -48,8 +48,8 @@
         $(".score").text(guessGame.score);
 
         $(".word").on("click", function () {
-            $(".word").text(guessGame.getRandomWord());
-            $(".score").text(guessGame.increaseScore());
+            guessGame.getRandomWord();
+            $(".word").text(guessGame.guessWord);
         });
     </script>
 </body>
