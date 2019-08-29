@@ -29,6 +29,11 @@
                     Click on the start button below to begin. Type a letter 
                     to make a guess.
                 </div>
+                <div class="grid-section-items score-div">
+                    Score
+                    <div class="score">
+                    </div>
+                </div>
                 <div class="grid-section-items word">
                     word to guess
                 </div>
@@ -40,8 +45,11 @@
     </div>
 
     <script type="text/javascript">
+        $(".score").text(guessGame.score);
+
         $(".word").on("click", function () {
             $(".word").text(guessGame.getRandomWord());
+            $(".score").text(guessGame.increaseScore());
         });
     </script>
 </body>
