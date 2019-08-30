@@ -31,25 +31,60 @@
                 </div>
                 <div class="grid-section-items score-div">
                     Score
-                    <div class="score">
+                    <div class="total score">
                     </div>
                 </div>
                 <div class="grid-section-items word">
-                    word to guess
+                    <button type="button" class="start-btn">
+                        Start Game
+                    </button>
                 </div>
-                <div class="grid-section-items guesses">
-                    current guesses 
+                <div class="grid-section-items attempts-div">
+                    Attempts Left
+                    <div class="total attempts">
+                    </div>
+                </div>
+                <div class="grid-section-items guess-list">
+                    <div class="guess-list-title">
+                        Current Guess
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
     <script type="text/javascript">
-        $(".score").text(guessGame.score);
+        var scoreDiv = document.getElementsByClassName("score");
+        var wordDiv = document.getElementsByClassName("word");
 
-        $(".word").on("click", function () {
-            guessGame.getRandomWord();
-            $(".word").text(guessGame.guessWord);
+
+        $(document).ready(function() {
+            $(".start-btn").on("click", function () {
+                $(".score").text(guessGame.score);
+                $(".attempts").text(guessGame.tries);
+                $(".word").text("");
+                guessGame.getRandomWord();
+                console.log("This is the length " + guessGame.currentWord.length);
+                console.log(guessGame.currentWord);
+                for (var i = 0; i < guessGame.currentWord.length; i++) {
+                    $(".word").append("<span class='letter-" + i + "'>_</span>");
+                }
+            });
+
+            document.onkeyup = function(event) {
+                // only allow letters
+                if (event.keyCode >= 65 && event.keyCode <= 90) {
+                    // run the checkLetter function to find out if a match
+                    guessGame.checkLetter(event.key);
+                    // update tries
+                    $(".attempts").text(guessGame.tries);
+                    // 
+                    if ( guessGame.wrongGuess ) {
+                        $(".guess-list").append("<span class='guesses'>" + event.key + "</span>");
+                    }
+
+                }
+            }
         });
     </script>
 </body>
