@@ -72,18 +72,35 @@
             });
 
             document.onkeyup = function(event) {
-                // only allow letters
-                if (event.keyCode >= 65 && event.keyCode <= 90) {
+                // only allow letters and only ones that havent been guessed
+                if (event.keyCode >= 65 && event.keyCode <= 90 
+                    && guessGame.lettersGuessed.indexOf(event.key) === -1) {
                     // run the checkLetter function to find out if a match
                     guessGame.checkLetter(event.key);
-                    // update tries
+                    // update tries in html
                     $(".attempts").text(guessGame.tries);
-                    // 
-                    if ( guessGame.wrongGuess ) {
-                        $(".guess-list").append("<span class='guesses'>" + event.key + "</span>");
+                    // update word with correct letters
+                    if ( guessGame.correctLetterIndex.length > 0 ) {
+                        guessGame.correctLetterIndex.forEach(function (i) {
+                            $(".letter-" + i).text(event.key);
+                        });
+                    }
+                    // udpate wrong guesses
+                    else {
+                            $(".guess-list").append("<span class='guesses'>" + event.key + "</span>");
+                    }
+                }
+                
+                $(document).ready(function() {
+
+                    if ( guessGame.currentWord.length != 0 && guessGame.checkWin() ) {
+                        alert("You have won!");
                     }
 
-                }
+                    if ( guessGame.checkLoss() ) {
+                        alert("You have lost!");
+                    }
+                });
             }
         });
     </script>

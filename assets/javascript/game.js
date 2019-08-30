@@ -6,10 +6,9 @@ var guessGame = {
     score: 0,
     tries: 10,
     currentWord: "",
-    letterGuessed: "",
+    lettersGuessed: "",
+    correctLettersGuessed: 0,
     correctLetterIndex: [],
-    wrongGuess: true,
-
 
     getRandomWord: function() {
         this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
@@ -21,32 +20,42 @@ var guessGame = {
     },
 
     checkLetter: function(key) {
-        // check to see if the letter was guessed (-1 if not guessed, otherwise was guessed and needs to skip function)
-        if ( this.letterGuessed.indexOf(key) === -1 ) {
-            // default to wrong guess
-            this.wrongGuess = true;
-            // clear out the correctLetterIndex to get a new array that will contain the index of letters that match
-            this.correctLetterIndex = [];
-            // check the key against the currentWord string
-            var index = 0;
-            // runs at least once and continues when there is an instance of the letter guessed
-            while (index >= 0) {
-                // sets index to index of letter if exists for -1 if doesn't
-                index = this.currentWord.indexOf(key, index);
-                console.log(index);
-                // if the letter was in currentWord
-                if (index >= 0) {
-                    this.correctLetterIndex.push(index);
-                    this.wrongGuess = false;
-                    index++;
-                }
-            }
-            console.log(this.correctLetterIndex);
-            if (this.wrongGuess) {
-                this.letterGuessed = this.letterGuessed + key;
-                console.log(this.letterGuessed);
-                this.tries--;
+        // add guessed letter to the string of letters guessed
+        this.lettersGuessed = this.lettersGuessed + key;
+        // clear out the correctLetterIndex to get a new array that will contain the index of letters that match
+        this.correctLetterIndex = [];
+        // reset index for current guess
+        var index = 0;
+        // runs at least once and again when there is an instance of the letter guessed
+        while (index >= 0) {
+            // sets index to index of letter if exists for -1 if doesn't
+            index = this.currentWord.indexOf(key, index);
+            // if the letter was in currentWord
+            if (index >= 0) {
+                // add the index of the letter to the array to change letter in html
+                this.correctLetterIndex.push(index);
+                // increase index to see if another letter in string matches guess
+                index++;
+                // count how many letters have been guessed to find win condition
+                this.correctLettersGuessed++;
+                console.log(this.correctLettersGuessed);
             }
         }
-    }
+        // if letter was not in word (so is a wrong guess)
+        if (this.correctLetterIndex.length === 0) {
+            this.tries--;
+        }
+    },
+
+    checkWin: function() {
+        if ( this.correctLettersGuessed === this.currentWord.length ) {
+            return true;
+        }
+    },
+
+    checkLoss: function() {
+        if ( this.tries <= 0 ) {
+            return true;
+        }
+    },
 }
