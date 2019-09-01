@@ -46,7 +46,8 @@ footer {
 .header-title {
     font-family: 'Uncial Antiqua', cursive;
     font-size: 40px;
-    background-color: rgba(146, 0, 0, .7);
+    background-color: rgba(146, 0, 0, .8);
+    color: white;
     border-radius: 5px;
     line-height: 45px;
     padding: 5px;
@@ -102,7 +103,7 @@ footer {
     padding-top: 15px;
 }
 
-.attempts-div {
+.tries-div {
     position: relative;
     grid-column: 3 / 4;
     grid-row: 2 / 3;
@@ -125,7 +126,7 @@ footer {
     font-size: 18px;
 }
 
-.guess-list {
+.guess-list-title {
     grid-column: 1 / 4;
     grid-row: 3 / 4;
     margin-left: auto;
@@ -185,7 +186,7 @@ footer {
         text-align: center;
     }
     
-    .guess-list {
+    .guess-list-title {
         width: 225px;
     }
 }

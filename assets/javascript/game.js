@@ -2,7 +2,8 @@ var guessGame = {
     wordList: ["sauron", "melkor", "aragorn", "strider", "gandalf", "galadriel", "legolas", "thranduil",
         "baggins", "frodo", "samwise", "pippin", "gimli", "boromir", "faramir", "arwen", "bilbo",
         "bombadil", "saruman", "meriadoc", "denethor", "elendil", "elrond", "celeborn", "eomer", "eowyn",
-        "rosie", "isildur", "haldir", "proudfoot", "smaug", "thorin", "theoden", "wormtongue"],
+        "rosie", "isildur", "haldir", "proudfoot", "smaug", "thorin", "theoden", "wormtongue",
+        "gollum", "smeagol", "underhill"],
     score: 0,
     tries: 10,
     currentWord: "",
@@ -11,12 +12,13 @@ var guessGame = {
     correctLetterIndex: [],
 
     getRandomWord: function() {
+        // get a random number for the index of the word list array
         this.currentWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
     },
 
     increaseScore: function() {
+        // increase the score by 1
         this.score++;
-        return this.score;
     },
 
     checkLetter: function(key) {
@@ -48,14 +50,26 @@ var guessGame = {
     },
 
     checkWin: function() {
+        // see if how many letters were guessed is the same as the word's length
         if ( this.correctLettersGuessed === this.currentWord.length ) {
+            this.score++;
+            this.resetGame();
             return true;
         }
     },
 
     checkLoss: function() {
+        // check if tries are 0 or less (a loss)
         if ( this.tries <= 0 ) {
+            this.resetGame();
             return true;
         }
+    },
+
+    resetGame: function () {
+        // reset some variables so game can be played again
+        this.tries = 10;
+        this.lettersGuessed = "";
+        this.correctLettersGuessed = 0;
     },
 }
