@@ -119,8 +119,6 @@
                         $(document).ready(function() {
                             // update the score div
                             scoreDiv.innerHTML = guessGame.score;
-                            // alert of the win
-                            alert("You have won!");
                             // start the game again
                             startGame();
                         });
@@ -128,8 +126,6 @@
                     
                     //check for loss
                     if ( guessGame.checkLoss() ) {
-                        // alert of the loss
-                        alert("You have lost!");
                         // start the game again
                         startGame();
                     };

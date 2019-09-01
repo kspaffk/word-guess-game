@@ -115,6 +115,7 @@ footer {
     grid-row: 2 / 3;
     text-align: center;
     font-size: 30px;
+    padding: 25px;
 }
 
 .start-btn {

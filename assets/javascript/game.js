@@ -40,7 +40,6 @@ var guessGame = {
                 index++;
                 // count how many letters have been guessed to find win condition
                 this.correctLettersGuessed++;
-                console.log(this.correctLettersGuessed);
             }
         }
         // if letter was not in word (so is a wrong guess)
@@ -52,15 +51,17 @@ var guessGame = {
     checkWin: function() {
         // see if how many letters were guessed is the same as the word's length
         if ( this.correctLettersGuessed === this.currentWord.length ) {
+            this.playSound("assets/audio/win0" + ((Math.floor(Math.random() * 5)) + 1) + ".mp3");
             this.score++;
             this.resetGame();
             return true;
         }
     },
-
+    
     checkLoss: function() {
         // check if tries are 0 or less (a loss)
         if ( this.tries <= 0 ) {
+            this.playSound("assets/audio/loss0" + ((Math.floor(Math.random() * 4)) + 1) + ".mp3");
             this.resetGame();
             return true;
         }
@@ -71,5 +72,11 @@ var guessGame = {
         this.tries = 10;
         this.lettersGuessed = "";
         this.correctLettersGuessed = 0;
+    },
+
+    playSound: function (audioFile) {
+        var audio = new Audio(audioFile);
+        audio.loop = false;
+        audio.play(); 
     },
 }
