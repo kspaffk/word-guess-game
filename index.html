@@ -94,22 +94,23 @@
 
             document.onkeyup = function(event) {
                 // only allow letters and only ones that havent been guessed
+                var letterGuessed = event.key.toLowerCase();
                 if (event.keyCode >= 65 && event.keyCode <= 90 
-                    && guessGame.lettersGuessed.indexOf(event.key) === -1) {
+                    && guessGame.lettersGuessed.indexOf(letterGuessed) === -1) {
                     // run the checkLetter function to find out if a match
-                    guessGame.checkLetter(event.key);
+                    guessGame.checkLetter(letterGuessed);
                     // update tries in html
                     triesDiv.innerHTML = guessGame.tries;
                     // update word with correct letters
                     if ( guessGame.correctLetterIndex.length > 0 ) {
                         guessGame.correctLetterIndex.forEach(function (i) {
-                        document.getElementsByClassName("letter-" + i)[0].innerHTML = event.key;
+                        document.getElementsByClassName("letter-" + i)[0].innerHTML = letterGuessed;
                         });
                     }
                     // udpate wrong guesses
                     else {
                             var wrongLtrSpan = document.createElement("span");
-                            wrongLtrSpan.innerHTML = event.key;
+                            wrongLtrSpan.innerHTML = letterGuessed;
                             wrongLtrSpan.className = "guesses";
                             guessListDiv.appendChild(wrongLtrSpan);
                     }
