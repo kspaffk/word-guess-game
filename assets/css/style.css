@@ -87,6 +87,13 @@ footer {
 .game-description {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
+} 
+
+.last-word-title {
+    grid-column: 1 / 3; 
+    grid-row: 1 / 2;
+    text-align: center;
+    padding: 25px;
 }
 
 .score-div {

@@ -1,8 +1,8 @@
 var guessGame = {
-    wordList: ["sauron", "melkor", "aragorn", "strider", "gandalf", "galadriel", "legolas", "thranduil",
+    wordList: ["sauron", "aragorn", "strider", "gandalf", "galadriel", "legolas", "thranduil",
         "baggins", "frodo", "samwise", "pippin", "gimli", "boromir", "faramir", "arwen", "bilbo",
         "bombadil", "saruman", "meriadoc", "denethor", "elendil", "elrond", "celeborn", "eomer", "eowyn",
-        "rosie", "isildur", "haldir", "proudfoot", "smaug", "thorin", "theoden", "wormtongue",
+        "rosie", "isildur", "haldir", "proudfoot", "thorin", "theoden", "wormtongue",
         "gollum", "smeagol", "underhill"],
     score: 0,
     tries: 10,

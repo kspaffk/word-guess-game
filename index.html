@@ -67,27 +67,30 @@
         var startBtn = document.getElementsByClassName("start-btn")[0];
 
         function clickStartGame () {
+            // change the game description so that it will show the last word guessed later
+            var lastWordTitle = document.getElementsByClassName("game-description")[0];
+            lastWordTitle.className="grid-section-items last-word-title";
+            lastWordTitle.innerHTML = "";
             startGame();
         }
 
         function startGame() {
-            // $(document).ready(function() {
-                // get a random word
-                guessGame.getRandomWord();
+            // get a random word
+            guessGame.getRandomWord();
 
-                // update divs for starting game
-                wordDiv.innerHTML = "";
-                guessListDiv.innerHTML = "";
-                triesDiv.innerHTML = guessGame.tries;                
-                
-                // populate the word with underscores
-                for (var i = 0; i < guessGame.currentWord.length; i++) {
-                    var letterSpan = document.createElement("span");
-                    letterSpan.innerHTML = "_";
-                    letterSpan.className = "letter-" + i;
-                    wordDiv.appendChild(letterSpan);
-                }
-            // });
+            // update divs for starting game
+            wordDiv.innerHTML = "";
+            guessListDiv.innerHTML = "";
+            triesDiv.innerHTML = guessGame.tries;
+            
+
+            // populate the word with underscores
+            for (var i = 0; i < guessGame.currentWord.length; i++) {
+                var letterSpan = document.createElement("span");
+                letterSpan.innerHTML = "_";
+                letterSpan.className = "letter-" + i;
+                wordDiv.appendChild(letterSpan);
+            }
 
             document.onkeyup = function(event) {
                 // only allow letters and only ones that havent been guessed
@@ -111,14 +114,20 @@
                             guessListDiv.appendChild(wrongLtrSpan);
                     }
                 }
-                
-                // $(document).ready(function() {
-
                     // check for win
                     if ( guessGame.currentWord.length != 0 && guessGame.checkWin() ) {
                         $(document).ready(function() {
                             // update the score div
                             scoreDiv.innerHTML = guessGame.score;
+                            // udpate last word guessed div
+                            var lastWordTitle = document.getElementsByClassName("last-word-title")[0];                            
+                            lastWordTitle.innerHTML = "Last Guess";
+                            lastWordTitle.innerHTML = "Last Word Guess"
+                            var lastWord = document.createElement("p");
+                            lastWord.innerHTML = guessGame.currentWord;
+                            lastWord.className = "total";
+                            lastWordTitle.appendChild(lastWord);
+
                             // start the game again
                             startGame();
                         });
@@ -129,7 +138,6 @@
                         // start the game again
                         startGame();
                     };
-                // });
             }
         }
     </script>
