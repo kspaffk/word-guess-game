@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Tolkien Name Game</title>
 
     <!-- css style sheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -18,7 +18,7 @@
     <div class="grid-main">
         <header class="header">
             <div class="header-title">
-                Lord of the Rings Name Game
+                Tolkien Name Game
             </div>  
         </header>
         <aside class="aside aside-left">
@@ -28,8 +28,9 @@
         <section>
             <div class="grid-section">
                 <div class="grid-section-items game-description">
-                    Click on the start button below to begin. Type a letter 
-                    to make a guess.
+                    Guess the name of the character in the Tolkien world. 
+                    Click on the "Start Game" zbutton below to begin. Type a letter 
+                    to make a guess. 
                 </div>
                 <div class="grid-section-items score-div">
                     Score
@@ -123,7 +124,7 @@
                             // udpate last word guessed div
                             var lastWordTitle = document.getElementsByClassName("last-word-title")[0];                            
                             lastWordTitle.innerHTML = "Last Guess";
-                            lastWordTitle.innerHTML = "Last Word Guess"
+                            lastWordTitle.innerHTML = "Last Word Guessed:"
                             var lastWord = document.createElement("p");
                             lastWord.innerHTML = guessGame.currentWord;
                             lastWord.className = "total";
